@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Choose a campus event and register with instant form validation.">
+  <title>Campus Events | Registration</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="site-header">
+      <div class="brand" aria-label="Campus Events">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>Campus<span class="brand-emphasis">Events</span></span>
+      </div>
+      <button id="theme-button" class="theme-button" type="button" aria-label="Switch to dark theme">Dark mode</button>
+    </header>
+
+    <div class="hero">
+      <span class="eyebrow">WEB TECHNOLOGIES / LABORATORY 04</span>
+      <h1>Find your next <span>campus event.</span></h1>
+      <p>Choose an activity, fill in a few details, and get instant confirmation. No page reloads, no paper forms.</p>
+    </div>
+
+    <section class="content-section" aria-labelledby="events-title">
+      <div class="section-header">
+        <div>
+          <span class="step-label">01 / PICK AN EVENT</span>
+          <h2 id="events-title">Upcoming events</h2>
+        </div>
+        <span class="section-meta">3 activities available</span>
+      </div>
+
+      <div class="event-grid">
+        <article class="event-card" data-event-id="design">
+          <div class="event-topline"><span class="event-category">DESIGN</span><span class="event-number">01</span></div>
+          <h3>Web Design Workshop</h3>
+          <p>Explore clean layouts, typography, and accessible interface design.</p>
+          <div class="event-bottom"><span class="event-date">Oct 15 · 14:00</span><button type="button" class="select-button" aria-pressed="false">Select event</button></div>
+        </article>
+        <article class="event-card" data-event-id="javascript">
+          <div class="event-topline"><span class="event-category">DEVELOPMENT</span><span class="event-number">02</span></div>
+          <h3>JavaScript Quiz</h3>
+          <p>Challenge your DOM, variables, and event-handling knowledge.</p>
+          <div class="event-bottom"><span class="event-date">Oct 17 · 12:30</span><button type="button" class="select-button" aria-pressed="false">Select event</button></div>
+        </article>
+        <article class="event-card" data-event-id="career">
+          <div class="event-topline"><span class="event-category">CAREER</span><span class="event-number">03</span></div>
+          <h3>IT Career Talk</h3>
+          <p>Meet industry professionals and learn about your first tech job.</p>
+          <div class="event-bottom"><span class="event-date">Oct 20 · 16:00</span><button type="button" class="select-button" aria-pressed="false">Select event</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section registration-section" aria-labelledby="register-title">
+      <div class="section-header">
+        <div>
+          <span class="step-label">02 / YOUR DETAILS</span>
+          <h2 id="register-title">Register for an event</h2>
+        </div>
+        <span class="section-meta">All fields required</span>
+      </div>
+      <form id="registration-form" class="form-panel" novalidate>
+        <div class="selected-event-field" id="selected-event-field">
+          <div>
+            <label class="field-label" for="selected-event">Selected event</label>
+            <p id="selected-event-label" class="selected-event-value">No event selected yet</p>
+          </div>
+          <span class="selection-indicator" aria-hidden="true">STEP 01</span>
+          <input type="hidden" id="selected-event" name="selectedEvent" value="">
+          <p id="selected-event-error" class="field-error" role="alert"></p>
+        </div>
+
+        <div class="fields-grid">
+          <div class="form-field">
+            <label class="field-label" for="full-name">Full name</label>
+            <input id="full-name" name="fullName" type="text" placeholder="e.g. Alex Smith" autocomplete="name" aria-describedby="name-counter name-error">
+            <div class="field-footer"><p id="name-error" class="field-error" role="alert"></p><span id="name-counter" class="character-count">0 characters</span></div>
+          </div>
+          <div class="form-field">
+            <label class="field-label" for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="alex@example.com" autocomplete="email" aria-describedby="email-error">
+            <p id="email-error" class="field-error" role="alert"></p>
+          </div>
+          <div class="form-field full-span">
+            <label class="field-label" for="student-group">Student group</label>
+            <input id="student-group" name="studentGroup" type="text" placeholder="e.g. IT3-2503 DS" aria-describedby="group-error">
+            <p id="group-error" class="field-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="agreement-field" id="agreement-field">
+          <label class="agreement-label" for="agreement">
+            <input type="checkbox" id="agreement" name="agreement" aria-describedby="agreement-error">
+            <span>I agree to the event participation rules and confirm that the information is correct.</span>
+          </label>
+          <p id="agreement-error" class="field-error" role="alert"></p>
+        </div>
+
+        <div class="form-actions">
+          <span class="form-hint">You'll see confirmation below immediately.</span>
+          <button type="submit" class="submit-button">Complete registration <span aria-hidden="true">↗</span></button>
+        </div>
+      </form>
+    </section>
+
+    <section class="content-section results-section" aria-labelledby="results-title">
+      <div class="section-header">
+        <div>
+          <span class="step-label">03 / CONFIRMATION</span>
+          <h2 id="results-title">Registrations <span id="registration-count" class="count-badge">0</span></h2>
+        </div>
+        <span class="section-meta">Updated instantly</span>
+      </div>
+      <div id="success-banner" class="success-banner" role="status" aria-live="polite" hidden>
+        <span class="success-check" aria-hidden="true">✓</span>
+        <p id="success-text"></p>
+      </div>
+      <ul id="registration-list" class="registration-list" aria-live="polite"></ul>
+    </section>
+    <footer class="footer">Built with HTML5, CSS3 and plain JavaScript · Laboratory Work 4</footer>
+  </main>
+</body>
+</html>
